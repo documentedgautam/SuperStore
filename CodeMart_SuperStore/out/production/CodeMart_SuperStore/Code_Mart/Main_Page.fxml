@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="533.0" maxWidth="705.0" minHeight="533.0" minWidth="705.0" prefHeight="533.0" prefWidth="705.0" style="-fx-background-image: url(&quot;https://www.sanpeiventures.com/wp-content/uploads/2017/07/smart-shopping-cart.jpg&quot;);" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Code_Mart.Main_Controller">
+    <children>
+        <VBox layoutX="14.0" layoutY="14.0" maxHeight="533.0" maxWidth="705.0" minHeight="440.0" minWidth="214.0" prefHeight="487.0" prefWidth="241.0">
+            <children>
+                <Button fx:id="su_login" mnemonicParsing="false" onAction="#SU_login_page" prefHeight="60.0" prefWidth="160.0" text="SuperUser">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" top="40.0" />
+                    </VBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#WA_login_page" prefHeight="60.0" prefWidth="160.0" text="WareHouse Admin">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" />
+                    </VBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#SA_login_page" prefHeight="60.0" prefWidth="160.0" text="Store Admin">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" />
+                    </VBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" text="Guest User">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" />
+                    </VBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#exit" prefHeight="60.0" prefWidth="160.0" text="Exit">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </VBox>
+    </children>
+</AnchorPane>
