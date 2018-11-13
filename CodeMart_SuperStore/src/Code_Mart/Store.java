@@ -1,33 +1,17 @@
-class Store implements SerialiZable, Add_Del_Upd
-{
-	private final String NAME;
-	private ArrayList<Category> Cat_list;
-	private ArrayList<Product> Prod_list;
-	private Warehouse parent;
+package Code_Mart;
+import java.util.ArrayList;
 
-	public void Add(String path,Product prod)
-	{
+public class Store {
+    private final String NAME;
+    private ArrayList<Category> Cat_list;
+    private ArrayList<Product> Prod_list;
+    private WareHouse Parent;
 
-	}
+    public Store(String NAME){
+        this.NAME=NAME;
+    }
 
-	public void Delete(Product prod)
-	{
-
-	}
-
-	public void Update(Product prod)
-	{
-
-	}
-
-	protected void Check_Data()
-	{
-
-	}
-
-	protected void Send_message(Product prod)
-	{
-
-	}
-	
+    protected String getNAME(){
+        return this.NAME;
+    }
 }
