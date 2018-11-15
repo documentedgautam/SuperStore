@@ -1,9 +1,11 @@
-public class SuperStore_System implements SerialiZable
+import java.io.Serializable;
+import java.util.ArrayList;
+public class SuperStore_System implements Serializable
 {
 
-	public void Create_SuperUser(int id,String pswd)
+	public SuperUser Create_SuperUser(int id,String pswd)
 	{
-		SU SuperUser = new SuperUser();
+		return new SuperUser(id,pswd);
 	}
 
 	public static void main(String[]args)

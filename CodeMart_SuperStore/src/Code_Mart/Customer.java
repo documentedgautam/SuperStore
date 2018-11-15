@@ -1,4 +1,6 @@
-class Customer implements SerialiZable
+import java.io.Serializable;
+import java.util.ArrayList;
+class Customer implements Serializable
 {
 	private  ArrayList<Product> Cart_list;
 	private  int fund;

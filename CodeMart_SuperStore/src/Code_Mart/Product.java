@@ -1,4 +1,6 @@
-class Product implements SerialiZable
+import java.io.Serializable;
+import java.util.ArrayList;
+class Product implements Serializable
 {
 	protected String P_NAME;
 	protected int P_ID;

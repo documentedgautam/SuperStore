@@ -1,3 +1,5 @@
+import java.io.Serializable;
+import java.util.ArrayList;
 class Store implements Serializable, Add_Del_Upd
 {
 	private final String NAME;
@@ -5,12 +7,22 @@ class Store implements Serializable, Add_Del_Upd
 	private ArrayList<Product> Prod_list;
 	private Warehouse parent;
 
+	public Store(String name)
+	{
+		this.NAME = name;
+		Cat_list = new ArrayList<Cateory>();
+		//Store_list = new ArrayList<Store_Admin>();
+		Prod_list = new ArrayList<Product>();
+		//Ware_Ad_list = new ArrayList<Ware_Admin>();
+		parent = null;
+	}
+
 	public void Add(String path,Product prod)
 	{
 		boolean flag0=false;
 		try
 		{
-			if(Search(prod.name).name!=null)
+			if(Search(prod.P_NAME).P_NAME!=null)
 		 	{
 				flag0=true;
 				throw new CustomException("Product already exists in Warehouse");
@@ -42,7 +54,7 @@ class Store implements Serializable, Add_Del_Upd
 							if(Cat_list.get(i).Sub_list.get(j).S_name.equals(cat[k]))
 							{
 								flag1=false;
-								String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+prod.name;
+								String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+prod.P_NAME;
 								//Product p = new Product(product,path,Price,Quantity);
 								prod.PATH = path_of_product;
 								Cat_list.get(i).Sub_list.get(j).Pro_list.add(prod);
@@ -54,7 +66,7 @@ class Store implements Serializable, Add_Del_Upd
 						{
 							Cat_list.get(i).Sub_list.add(new SubCategory(cat[k]));
 							int l=Cat_list.get(i).Sub_list.size()-1;
-							String path_of_product=Cat_list.get(i).C_name+" > "+C_name.get(i).Sub_list.get(l).S_name+" > "+prod.name;
+							String path_of_product=Cat_list.get(i).C_name+" > "+C_name.get(i).Sub_list.get(l).S_name+" > "+prod.P_NAME;
 							//Product p = new Product(product,path,Price,Quantity);
 							prod.PATH = path_of_product;
 							Cat_list.get(i).Sub_list.get(l).Pro_list.add(prod);
@@ -69,7 +81,7 @@ class Store implements Serializable, Add_Del_Upd
 					k++;
 					Cat_list.get(Cat_list.size()-1).Sub_list.add(new SubCategory(cat[k]));
 					int l=Cat_list.get(Cat_list.size()-1).Sub_list.size();
-					String path_of_product=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+prod.name;
+					String path_of_product=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+prod.P_NAME;
 					//Product p = new Product(product,path,Price,Quantity);
 					prod.PATH = path_of_product;
 					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Pro_list.add(prod);
@@ -97,7 +109,7 @@ class Store implements Serializable, Add_Del_Upd
 									if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name.equals(cat[k]))
 									{
 										flag2=false;
-										String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.name;
+										String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.P_NAME;
 										//Product p = new Product(product,path,Price,Quantity);
 										prod.PATH = path_of_product;
 										Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).Pro_list.add(prod);
@@ -109,7 +121,7 @@ class Store implements Serializable, Add_Del_Upd
 								{
 									Cat_list.get(i).Sub_list.get(j).add(new SubCategory(cat[k]));
 									int m=Cat_list.get(i).Sub_list.get(j).Sub_list.size()-1;
-									String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.name;
+									String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.P_NAME;
 									//Product p = new Product(product,path,Price,Quantity);
 									prod.PATH = path_of_product;
 									Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).Pro_list.add(prod);
@@ -125,7 +137,7 @@ class Store implements Serializable, Add_Del_Upd
 							k++;
 							Cat_list.get(i).Sub_list.get(l).Sub_list.add(new SubCategory(cat[k]));
 							int m=Cat_list.get(i).Sub_list.get(l).Sub_list.size()-1;
-							String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(l).S_name+" > "+Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).S_name+" > "+prod.name;
+							String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(l).S_name+" > "+Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).S_name+" > "+prod.P_NAME;
 							//Product p = new Product(product,path,Price,Quantity);
 							prod.PATH = path_of_product;
 							Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).Pro_list.add(prod);
@@ -143,7 +155,7 @@ class Store implements Serializable, Add_Del_Upd
 					k++;
 					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.add(new SubCategory(cat[k]));
 					int m=Cat_list.get(Cat_list.size()-1).sub.get(l-1).Sub_list.size();
-					String path_of_product=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.get(m-1).S_name+" > "+prod.name;
+					String path_of_product=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.get(m-1).S_name+" > "+prod.P_NAME;
 					//Product p = new Product(product,path,Price,Quantity);
 					prod.PATH = path_of_product;
 					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Pro_list.add(prod);
@@ -159,7 +171,7 @@ class Store implements Serializable, Add_Del_Upd
 		boolean flag=true;
 		for(int i=0;i<Cat_list.size();i++)
 		{
-			if(Cat_list.get(i).C_name.equals(prod.name))
+			if(Cat_list.get(i).C_name.equals(prod.P_NAME))
 			{
 				Cat_list.remove(i);
 				//System.out.println("Category Deleted");
@@ -168,7 +180,7 @@ class Store implements Serializable, Add_Del_Upd
 			}
 			for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
 			{
-				if(Cat_list.get(i).Sub_list.get(j).S_name.equals(prod.name))
+				if(Cat_list.get(i).Sub_list.get(j).S_name.equals(prod.P_NAME))
 				{
 					Cat_list.get(i).Sub_list.remove(j);
 					//System.out.println("Subcategory Deleted");
@@ -177,7 +189,7 @@ class Store implements Serializable, Add_Del_Upd
 				}
 				for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Sub_list.size();k++)
 				{
-					if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).S_name.equals(prod.name))
+					if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).S_name.equals(prod.P_NAME))
 					{
 						Cat_list.get(i).Sub_list.get(j).Sub_list.remove(k);
 						//System.out.println("Subcategory Deleted");
@@ -186,7 +198,7 @@ class Store implements Serializable, Add_Del_Upd
 					}
 					for(int l=0;l<Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.size();l++)
 					{
-						if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).name.equals(prod.name))
+						if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).P_NAME.equals(prod.P_NAME))
 						{
 							Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.remove(l);
 							Prod_list.remove(prod);
@@ -198,7 +210,7 @@ class Store implements Serializable, Add_Del_Upd
 				}
 				for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Pro_list.size();k++)
 				{
-					if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).name.equals(prod.name))
+					if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).P_NAME.equals(prod.P_NAME))
 					{
 						Cat_list.get(i).Sub_list.get(j).Pro_list.remove(k);
 						Prod_list.remove(prod);
@@ -229,7 +241,7 @@ class Store implements Serializable, Add_Del_Upd
 		int flag9 = 0;
 		for(int i=0;i<Prod_list.size();i++)
 		{
-			if(i.name.equals(prod.name))
+			if(i.name.equals(prod.P_NAME))
 			{
 				String product_path = i.path;
 				flag = 1;
@@ -262,7 +274,7 @@ class Store implements Serializable, Add_Del_Upd
 								flag2=1;  // sub category has been found
 								for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Pro_list.size();k++)
 								{
-									if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).name.equals(cat[2]))
+									if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).P_NAME.equals(cat[2]))
 									{
 										Product pr = Cat_list.get(i).Sub_list.get(j).Pro_list.get(k);
 										pr.Price = prod.Price;
@@ -327,7 +339,7 @@ class Store implements Serializable, Add_Del_Upd
 										flag3=1; // sub sub category has been found
 										for(int l=0;l<Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.size();l++)
 										{
-											if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).name.equals(cat[3))
+											if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).P_NAME.equals(cat[3))
 											{
 												Product pr = Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l);
 												pr.Price = prod.Price;
@@ -379,9 +391,9 @@ class Store implements Serializable, Add_Del_Upd
 
 	}
 
-	protected void Send_message(Product prod)
+	protected Product Send_message(String name,int id,int quantity,String date)
 	{
-
+		return parent.give_ack(name,id,quantity,date);
 	}
 	
 }
