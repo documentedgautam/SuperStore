@@ -1,12 +1,12 @@
-class WareHouse implements SerialiZable
+class WareHouse implements Serializable
 {
 	private final String NAME;
-	private final ArrayList<Category>Cat_list;
-	private final ArrayList<Store_Admin>Store_list;
-	private final ArrayList<Product>Product_list;
-	private final ArrayList<Ware_Admin>Ware_Ad_list;
+	private final ArrayList<Category>Cat_list;		// database
+	private final ArrayList<Store_Admin>Store_list;	// linked stores to that warehouse
+	private final ArrayList<Product>Product_list;	// not using in update function  and can use in give ack 
+	private final ArrayList<Ware_Admin>Ware_Ad_list;	// helps in tracing the warehouses
 
-	public void Add(String categories,Product prod) throws CustomException
+	public void Add(String path,Product prod) throws CustomException
 	{
 		boolean flag0=false;
 		try
@@ -23,7 +23,7 @@ class WareHouse implements SerialiZable
 			{
 				throw new CustomException("Product already exists in Warehouse");
 			}
-				String[] cat = categories.split(" > ");
+				String[] cat = path.split(" > ");
 				int k=0;
 				boolean flag=true,flag1=true;
 			if(cat.length<2)
@@ -43,10 +43,11 @@ class WareHouse implements SerialiZable
 							if(Cat_list.get(i).Sub_list.get(j).S_name.equals(cat[k]))
 							{
 								flag1=false;
-								String path=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+prod.name;
+								String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+prod.name;
 								//Product p = new Product(product,path,Price,Quantity);
-								prod.PATH = path;
+								prod.PATH = path_of_product;
 								Cat_list.get(i).Sub_list.get(j).Pro_list.add(prod);
+								Product_list.add(prod);
 								return;
 							}
 						}
@@ -54,10 +55,11 @@ class WareHouse implements SerialiZable
 						{
 							Cat_list.get(i).Sub_list.add(new SubCategory(cat[k]));
 							int l=Cat_list.get(i).Sub_list.size()-1;
-							String path=Cat_list.get(i).C_name+" > "+C_name.get(i).Sub_list.get(l).S_name+" > "+prod.name;
+							String path_of_product=Cat_list.get(i).C_name+" > "+C_name.get(i).Sub_list.get(l).S_name+" > "+prod.name;
 							//Product p = new Product(product,path,Price,Quantity);
-							prod.PATH = path;
+							prod.PATH = path_of_product;
 							Cat_list.get(i).Sub_list.get(l).Pro_list.add(prod);
+							Product_list.add(prod);
 							return;
 						}
 					}
@@ -70,8 +72,9 @@ class WareHouse implements SerialiZable
 					int l=Cat_list.get(Cat_list.size()-1).Sub_list.size();
 					String path=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+prod.name;
 					//Product p = new Product(product,path,Price,Quantity);
-					prod.PATH = path;
+					prod.PATH = path_of_product;
 					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Pro_list.add(prod);
+					Product_list.add(prod);
 					return;
 				}
 			}
@@ -95,10 +98,11 @@ class WareHouse implements SerialiZable
 									if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name.equals(cat[k]))
 									{
 										flag2=false;
-										String path=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.name;
+										String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.name;
 										//Product p = new Product(product,path,Price,Quantity);
-										prod.PATH = path;
+										prod.PATH = path_of_product;
 										Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).Pro_list.add(prod);
+										Product_list.add(prod);
 										return;
 									}
 								}
@@ -106,10 +110,11 @@ class WareHouse implements SerialiZable
 								{
 									Cat_list.get(i).Sub_list.get(j).add(new SubCategory(cat[k]));
 									int m=Cat_list.get(i).Sub_list.get(j).Sub_list.size()-1;
-									String path=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.name;
+									String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.name;
 									//Product p = new Product(product,path,Price,Quantity);
-									prod.PATH = path;
+									prod.PATH = path_of_product;
 									Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).Pro_list.add(prod);
+									Product_list.add(prod);
 									return;
 								}
 							}
@@ -121,10 +126,11 @@ class WareHouse implements SerialiZable
 							k++;
 							Cat_list.get(i).Sub_list.get(l).Sub_list.add(new SubCategory(cat[k]));
 							int m=Cat_list.get(i).Sub_list.get(l).Sub_list.size()-1;
-							String path=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(l).S_name+" > "+Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).S_name+" > "+prod.name;
+							String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(l).S_name+" > "+Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).S_name+" > "+prod.name;
 							//Product p = new Product(product,path,Price,Quantity);
-							prod.PATH = path;
+							prod.PATH = path_of_product;
 							Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).Pro_list.add(prod);
+							Product_list.add(prod);
 							return;
 						}
 					}
@@ -138,10 +144,11 @@ class WareHouse implements SerialiZable
 					k++;
 					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.add(new SubCategory(cat[k]));
 					int m=Cat_list.get(Cat_list.size()-1).sub.get(l-1).Sub_list.size();
-					String path=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.get(m-1).S_name+" > "+prod.name;
+					String path_of_product=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.get(m-1).S_name+" > "+prod.name;
 					//Product p = new Product(product,path,Price,Quantity);
-					prod.PATH = path;
+					prod.PATH = path_of_product;
 					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Pro_list.add(prod);
+					Product_list.add(prod);
 					return;
 				}
 			}
@@ -185,6 +192,7 @@ class WareHouse implements SerialiZable
 						if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).name.equals(prod.name))
 						{
 							Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.remove(l);
+							Product_list.remove(prod);
 							//System.out.println("Product Deleted");
 							flag=false;
 							break;
@@ -196,6 +204,7 @@ class WareHouse implements SerialiZable
 					if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).name.equals(prod.name))
 					{
 						Cat_list.get(i).Sub_list.get(j).Pro_list.remove(k);
+						Product_list.remove(prod);
 						//System.out.println("Product Deleted");
 						flag=false;
 						break;
@@ -209,18 +218,18 @@ class WareHouse implements SerialiZable
 		}
 	}
 
-	public void Update(String product, int price, int quantity) throws CustomException
-	{
-		Product pro=Search(product);
+	public void Update(Prod prod) throws CustomException  // giving a product
+	{													 //  which has only updated price and quantity
+		Product pro=Search(prod.name);					 //   temporary product
 		if(pro.name==null)
 		{
 			throw new CustomException("Product not found in Amacon");
 		}
-		pro.Price(price);
-		pro.Quantity(quantity);
+		pro.Price(prod.Price);
+		pro.Quantity(prod.Quantity);
 	}
 
-	public Product Search(String product)
+	public Product Search(String product) throws CustomException
 	{
 		for(int i=0;i<Cat_list.size();i++)
 		{
@@ -255,11 +264,66 @@ class WareHouse implements SerialiZable
 
 	public Product give_ack(String name,int id,int quantity,String date)
 	{
+		boolean flag = false;
+		int flag1 = 0; // for forward message
+		try
+		{
+			for(int i=0;i<Product_list.size();i++)
+			{
+				if(Product_list.get(i).name.equals(name))
+				{
+					if((Product_list.get(i).P_ID==id)&&(Product_list.get(i).Quantity>=quantity))
+					{
+						Product_list.get(i).Quantity = Product_list.get(i).Quantity - quantity;
+						// check Quantity for that product and if Quantity=0; ---> alert message
+						return new Product("",0,"",0,0,0,quantity,0);
+					}
+					else
+					{
+						if(Product_list.get(i).P_ID!=id)
+						{
+							flag = true;
+							throw new CustomException("Invalid product id");
+						}
+						else
+						{
+							flag1=1;
+						}
+					}
+				}
+			}
+
+
+		}
+		catch(CustomException e)
+		{
+			if(flag)
+			{
+				throw new CustomException("Invalid product id");
+			}
+			else if(flag1==1)
+			{
+				return Forward_message(name,id,quantity,date);
+			}
+		}
 
 	}
 
 	public Product Forward_message(String name,int id,int quantity,String date)
 	{
+		for(int i=0;i<Ware_Ad_list.size();i++)
+		{
+			for(int j=0;j<Ware_Ad_list.get(i).W_house.Product_list.size();j++)
+			{
+				if(Ware_Ad_list.get(i).W_house.Product_list.get(j).name.equals(name))
+				{
+					if((Ware_Ad_list.get(i).W_house.Product_list.get(j).P_ID==id) && (Ware_Ad_list.get(i).W_house.Product_list.get(j).Quantity>quantity))
+					{
 
+						return new Product("",0,"",0,0,0,quantity,0);		//Ware_Ad_list.get(i).W_house.Product_list.get(j);
+					}
+				}
+			}
+		}
 	}		
 }
