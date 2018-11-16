@@ -3,10 +3,10 @@ import java.util.ArrayList;
 class WareHouse implements Serializable
 {
 	private final String NAME;
-	private final ArrayList<Category>Cat_list;		// database
-	private final ArrayList<Store_Admin>Store_Ad_list;	// linked stores to that warehouse
-	private final ArrayList<Product>Product_list;	// not using in update function  and can use in give ack 
-	private final ArrayList<Ware_Admin>Ware_Ad_list;	// helps in tracing the warehouses
+	protected final ArrayList<Category>Cat_list;		// database
+	protected final ArrayList<Store_Admin>Store_Ad_list;	// linked stores to that warehouse
+	protected final ArrayList<Product>Product_list;	// not using in update function  and can use in give ack 
+	protected final ArrayList<Ware_Admin>Ware_Ad_list;	// helps in tracing the warehouses
 
 	public WareHouse(String name)
 	{
@@ -19,96 +19,110 @@ class WareHouse implements Serializable
 
 	public void Add(String path,Product prod) throws CustomException
 	{
-		boolean flag0=false;
 		try
 		{
-			if(Search(prod.P_NAME).P_NAME!=null)
-		 	{
-				flag0=true;
-				throw new CustomException("Product already exists in Warehouse");
-			}
-		}
-		catch(CustomException e)
-		{
-			if(flag0)
+			boolean flag0=false;
+			try
 			{
-				throw new CustomException("Product already exists in Warehouse");
+				if(Search(prod.P_NAME).P_NAME!=null)
+			 	{
+					flag0=true;
+					throw new CustomException("Product already exists in Warehouse");
+				}
 			}
-				String[] cat = path.split(" > ");
-				int k=0;
-				boolean flag=true,flag1=true;
-			if(cat.length<2)
+			catch(CustomException e)
 			{
-				throw new CustomException("Invalid Input");
-			}
-			else if(cat.length==2)
-			{
-				for(int i=0;i<Cat_list.size();i++)
+				if(flag0)
 				{
-					if(Cat_list.get(i).C_name.equals(cat[k]))
+					throw new CustomException("Product already exists in Warehouse");
+				}
+					String[] cat = path.split(" > ");
+					int k=0;
+					boolean flag=true,flag1=true;
+				if(cat.length<2)
+				{
+					throw new CustomException("Invalid Input");
+				}
+				else if(cat.length==2)
+				{
+					for(int i=0;i<Cat_list.size();i++)
 					{
-						flag=false;
-						k++;
-						for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
+						if(Cat_list.get(i).C_name.equals(cat[k]))
 						{
-							if(Cat_list.get(i).Sub_list.get(j).S_name.equals(cat[k]))
+							flag=false;
+							k++;
+							for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
 							{
-								flag1=false;
-								String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+prod.P_NAME;
+								if(Cat_list.get(i).Sub_list.get(j).S_name.equals(cat[k]))
+								{
+									flag1=false;
+									String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+prod.P_NAME;
+									//Product p = new Product(product,path,Price,Quantity);
+									prod.PATH = path_of_product;
+									Cat_list.get(i).Sub_list.get(j).Pro_list.add(prod);
+									Product_list.add(prod);
+									return;
+								}
+							}
+							if(flag1)
+							{
+								Cat_list.get(i).Sub_list.add(new SubCategory(cat[k]));
+								int l=Cat_list.get(i).Sub_list.size()-1;
+								String path_of_product=Cat_list.get(i).C_name+" > "+C_name.get(i).Sub_list.get(l).S_name+" > "+prod.P_NAME;
 								//Product p = new Product(product,path,Price,Quantity);
 								prod.PATH = path_of_product;
-								Cat_list.get(i).Sub_list.get(j).Pro_list.add(prod);
+								Cat_list.get(i).Sub_list.get(l).Pro_list.add(prod);
 								Product_list.add(prod);
 								return;
 							}
 						}
-						if(flag1)
-						{
-							Cat_list.get(i).Sub_list.add(new SubCategory(cat[k]));
-							int l=Cat_list.get(i).Sub_list.size()-1;
-							String path_of_product=Cat_list.get(i).C_name+" > "+C_name.get(i).Sub_list.get(l).S_name+" > "+prod.P_NAME;
-							//Product p = new Product(product,path,Price,Quantity);
-							prod.PATH = path_of_product;
-							Cat_list.get(i).Sub_list.get(l).Pro_list.add(prod);
-							Product_list.add(prod);
-							return;
-						}
+					}
+					if(flag)
+					{
+						Cat_list.add(new Category(cat[k]));
+						k++;
+						Cat_list.get(Cat_list.size()-1).Sub_list.add(new SubCategory(cat[k]));
+						int l=Cat_list.get(Cat_list.size()-1).Sub_list.size();
+						String path=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+prod.P_NAME;
+						//Product p = new Product(product,path,Price,Quantity);
+						prod.PATH = path_of_product;
+						Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Pro_list.add(prod);
+						Product_list.add(prod);
+						return;
 					}
 				}
-				if(flag)
+				else if(cat.length==3)
 				{
-					Cat_list.add(new Category(cat[k]));
-					k++;
-					Cat_list.get(Cat_list.size()-1).Sub_list.add(new SubCategory(cat[k]));
-					int l=Cat_list.get(Cat_list.size()-1).Sub_list.size();
-					String path=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+prod.P_NAME;
-					//Product p = new Product(product,path,Price,Quantity);
-					prod.PATH = path_of_product;
-					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Pro_list.add(prod);
-					Product_list.add(prod);
-					return;
-				}
-			}
-			else if(cat.length==3)
-			{
-				for(int i=0;i<Cat_list.size();i++)
-				{
-					if(Cat_list.get(i).C_name.equals(cat[k]))
+					for(int i=0;i<Cat_list.size();i++)
 					{
-						flag=false;
-						k++;
-						for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
+						if(Cat_list.get(i).C_name.equals(cat[k]))
 						{
-							if(Cat_list.get(i).Sub_list.get(j).S_name.equals(cat[k]))
+							flag=false;
+							k++;
+							for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
 							{
-								flag1=false;
-								boolean flag2=true;
-								k++;
-								for(int m=0;m<Cat_list.get(i).Sub_list.get(j).Sub_list.size();m++)
+								if(Cat_list.get(i).Sub_list.get(j).S_name.equals(cat[k]))
 								{
-									if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name.equals(cat[k]))
+									flag1=false;
+									boolean flag2=true;
+									k++;
+									for(int m=0;m<Cat_list.get(i).Sub_list.get(j).Sub_list.size();m++)
 									{
-										flag2=false;
+										if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name.equals(cat[k]))
+										{
+											flag2=false;
+											String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.P_NAME;
+											//Product p = new Product(product,path,Price,Quantity);
+											prod.PATH = path_of_product;
+											Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).Pro_list.add(prod);
+											Product_list.add(prod);
+											return;
+										}
+									}
+									if(flag2)
+									{
+										Cat_list.get(i).Sub_list.get(j).add(new SubCategory(cat[k]));
+										int m=Cat_list.get(i).Sub_list.get(j).Sub_list.size()-1;
 										String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.P_NAME;
 										//Product p = new Product(product,path,Price,Quantity);
 										prod.PATH = path_of_product;
@@ -117,92 +131,99 @@ class WareHouse implements Serializable
 										return;
 									}
 								}
-								if(flag2)
-								{
-									Cat_list.get(i).Sub_list.get(j).add(new SubCategory(cat[k]));
-									int m=Cat_list.get(i).Sub_list.get(j).Sub_list.size()-1;
-									String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(j).S_name+" > "+Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).S_name+" > "+prod.P_NAME;
-									//Product p = new Product(product,path,Price,Quantity);
-									prod.PATH = path_of_product;
-									Cat_list.get(i).Sub_list.get(j).Sub_list.get(m).Pro_list.add(prod);
-									Product_list.add(prod);
-									return;
-								}
+							}
+							if(flag1)
+							{
+								Cat_list.get(i).Sub_list.add(new SubCategory(cat[k]));
+								int l=Cat_list.get(i).Sub_list.size()-1;
+								k++;
+								Cat_list.get(i).Sub_list.get(l).Sub_list.add(new SubCategory(cat[k]));
+								int m=Cat_list.get(i).Sub_list.get(l).Sub_list.size()-1;
+								String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(l).S_name+" > "+Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).S_name+" > "+prod.P_NAME;
+								//Product p = new Product(product,path,Price,Quantity);
+								prod.PATH = path_of_product;
+								Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).Pro_list.add(prod);
+								Product_list.add(prod);
+								return;
 							}
 						}
-						if(flag1)
-						{
-							Cat_list.get(i).Sub_list.add(new SubCategory(cat[k]));
-							int l=Cat_list.get(i).Sub_list.size()-1;
-							k++;
-							Cat_list.get(i).Sub_list.get(l).Sub_list.add(new SubCategory(cat[k]));
-							int m=Cat_list.get(i).Sub_list.get(l).Sub_list.size()-1;
-							String path_of_product=Cat_list.get(i).C_name+" > "+Cat_list.get(i).Sub_list.get(l).S_name+" > "+Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).S_name+" > "+prod.P_NAME;
-							//Product p = new Product(product,path,Price,Quantity);
-							prod.PATH = path_of_product;
-							Cat_list.get(i).Sub_list.get(l).Sub_list.get(m).Pro_list.add(prod);
-							Product_list.add(prod);
-							return;
-						}
 					}
-				}
-				if(flag)
-				{
-					Cat_list.add(new Category(cat[k]));
-					k++;
-					Cat_list.get(Cat_list.size()-1).Sub_list.add(new SubCategory(cat[k]));
-					int l=Cat_list.get(Cat_list.size()-1).Sub_list.size();
-					k++;
-					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.add(new SubCategory(cat[k]));
-					int m=Cat_list.get(Cat_list.size()-1).sub.get(l-1).Sub_list.size();
-					String path_of_product=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.get(m-1).S_name+" > "+prod.P_NAME;
-					//Product p = new Product(product,path,Price,Quantity);
-					prod.PATH = path_of_product;
-					Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Pro_list.add(prod);
-					Product_list.add(prod);
-					return;
+					if(flag)
+					{
+						Cat_list.add(new Category(cat[k]));
+						k++;
+						Cat_list.get(Cat_list.size()-1).Sub_list.add(new SubCategory(cat[k]));
+						int l=Cat_list.get(Cat_list.size()-1).Sub_list.size();
+						k++;
+						Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.add(new SubCategory(cat[k]));
+						int m=Cat_list.get(Cat_list.size()-1).sub.get(l-1).Sub_list.size();
+						String path_of_product=Cat_list.get(Cat_list.size()-1).C_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).S_name+" > "+Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Sub_list.get(m-1).S_name+" > "+prod.P_NAME;
+						//Product p = new Product(product,path,Price,Quantity);
+						prod.PATH = path_of_product;
+						Cat_list.get(Cat_list.size()-1).Sub_list.get(l-1).Pro_list.add(prod);
+						Product_list.add(prod);
+						return;
+					}
 				}
 			}
 		}
+		catch(CustomException e)
+		{
+			System.out.println(e.getMessage());
+		}		
 	}
 
 	public void Delete(Product prod) throws CustomException
 	{
 		//String[] cat=prod.path.split(" > ");
 		//String Produc = cat[cat.length-1];
-		boolean flag=true;
-		for(int i=0;i<Cat_list.size();i++)
+		try
 		{
-			if(Cat_list.get(i).C_name.equals(prod.P_NAME))
+			boolean flag=true;
+			for(int i=0;i<Cat_list.size();i++)
 			{
-				Cat_list.remove(i);
-				//System.out.println("Category Deleted");
-				flag=false;
-				break;
-			}
-			for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
-			{
-				if(Cat_list.get(i).Sub_list.get(j).S_name.equals(prod.P_NAME))
+				if(Cat_list.get(i).C_name.equals(prod.P_NAME))
 				{
-					Cat_list.get(i).Sub_list.remove(j);
-					//System.out.println("Subcategory Deleted");
+					Cat_list.remove(i);
+					//System.out.println("Category Deleted");
 					flag=false;
 					break;
 				}
-				for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Sub_list.size();k++)
+				for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
 				{
-					if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).S_name.equals(prod.P_NAME))
+					if(Cat_list.get(i).Sub_list.get(j).S_name.equals(prod.P_NAME))
 					{
-						Cat_list.get(i).Sub_list.get(j).Sub_list.remove(k);
+						Cat_list.get(i).Sub_list.remove(j);
 						//System.out.println("Subcategory Deleted");
 						flag=false;
 						break;
 					}
-					for(int l=0;l<Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.size();l++)
+					for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Sub_list.size();k++)
 					{
-						if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).name.equals(prod.P_NAME))
+						if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).S_name.equals(prod.P_NAME))
 						{
-							Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.remove(l);
+							Cat_list.get(i).Sub_list.get(j).Sub_list.remove(k);
+							//System.out.println("Subcategory Deleted");
+							flag=false;
+							break;
+						}
+						for(int l=0;l<Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.size();l++)
+						{
+							if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).P_NAME.equals(prod.P_NAME))
+							{
+								Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.remove(l);
+								Product_list.remove(prod);
+								//System.out.println("Product Deleted");
+								flag=false;
+								break;
+							}
+						}
+					}
+					for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Pro_list.size();k++)
+					{
+						if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).P_NAME.equals(prod.P_NAME))
+						{
+							Cat_list.get(i).Sub_list.get(j).Pro_list.remove(k);
 							Product_list.remove(prod);
 							//System.out.println("Product Deleted");
 							flag=false;
@@ -210,62 +231,68 @@ class WareHouse implements Serializable
 						}
 					}
 				}
-				for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Pro_list.size();k++)
-				{
-					if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).P_NAME.equals(prod.P_NAME))
-					{
-						Cat_list.get(i).Sub_list.get(j).Pro_list.remove(k);
-						Product_list.remove(prod);
-						//System.out.println("Product Deleted");
-						flag=false;
-						break;
-					}
-				}
+			}
+			if(flag)
+			{
+				throw new CustomException("Invalid Path");
 			}
 		}
-		if(flag)
+		catch(CustomException e)
 		{
-			throw new CustomException("Invalid Path");
-		}
+			System.out.println(e.getMessage());
+		}		
 	}
 
 	public void Update(Prod prod) throws CustomException  // giving a product
-	{													 //  which has only updated price and quantity
-		Product pro=Search(prod.P_NAME);					 //   temporary product
-		if(pro.name==null)
-		{
-			throw new CustomException("Product not found in Amacon");
+	{	try
+		{									 //  which has only updated price and quantity
+			Product pro=Search(prod.P_NAME);					 //   temporary product
+			if(pro.name==null)
+			{
+				throw new CustomException("Product not found in Amacon");
+			}
+			pro.Price(prod.Price);
+			pro.Quantity(prod.Quantity);
 		}
-		pro.Price(prod.Price);
-		pro.Quantity(prod.Quantity);
+		catch(CustomException e)
+		{
+			System.out.println(e.getMessage());
+		}		
 	}
 
 	public Product Search(String product) throws CustomException
 	{
-		for(int i=0;i<Cat_list.size();i++)
+		try
 		{
-			for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
+			for(int i=0;i<Cat_list.size();i++)
 			{
-				for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Sub_list.size();k++)
+				for(int j=0;j<Cat_list.get(i).Sub_list.size();j++)
 				{
-					for(int l=0;l<Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.size();l++)
+					for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Sub_list.size();k++)
 					{
-						if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).P_NAME.equals(product))
+						for(int l=0;l<Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.size();l++)
 						{
-							return Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l);
+							if(Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l).P_NAME.equals(product))
+							{
+								return Cat_list.get(i).Sub_list.get(j).Sub_list.get(k).Pro_list.get(l);
+							}
+						}
+					}
+					for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Pro_list.size();k++)
+					{
+						if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).P_NAME.equals(product))
+						{
+							return Cat_list.get(i).Sub_list.get(j).Pro_list.get(k);
 						}
 					}
 				}
-				for(int k=0;k<Cat_list.get(i).Sub_list.get(j).Pro_list.size();k++)
-				{
-					if(Cat_list.get(i).Sub_list.get(j).Pro_list.get(k).P_NAME.equals(product))
-					{
-						return Cat_list.get(i).Sub_list.get(j).Pro_list.get(k);
-					}
-				}
 			}
+			throw new CustomException("Product Not Found");
 		}
-		throw new CustomException("Product Not Found");
+		catch(CustomException e)
+		{
+			System.out.println(e.getMessage());
+		}		
 	}		
 
 	public void Check_Data()
@@ -303,14 +330,13 @@ class WareHouse implements Serializable
 					}
 				}
 			}
-
-
 		}
 		catch(CustomException e)
 		{
 			if(flag)
 			{
-				throw new CustomException("Invalid product id");
+				System.out.println(e.getMessage());
+				//throw new CustomException("Invalid product id");
 			}
 			else if(flag1==1)
 			{
@@ -322,18 +348,26 @@ class WareHouse implements Serializable
 
 	public Product Forward_message(String name,int id,int quantity,String date)
 	{
-		for(int i=0;i<Ware_Ad_list.size();i++)
+		try
 		{
-			for(int j=0;j<Ware_Ad_list.get(i).W_house.Product_list.size();j++)
+			for(int i=0;i<Ware_Ad_list.size();i++)
 			{
-				if(Ware_Ad_list.get(i).W_house.Product_list.get(j).P_NAME.equals(name))
+				for(int j=0;j<Ware_Ad_list.get(i).W_house.Product_list.size();j++)
 				{
-					if((Ware_Ad_list.get(i).W_house.Product_list.get(j).P_ID==id) && (Ware_Ad_list.get(i).W_house.Product_list.get(j).Quantity>quantity))
+					if(Ware_Ad_list.get(i).W_house.Product_list.get(j).P_NAME.equals(name))
 					{
-						return new Product("",0,"",0,0,0,quantity,0);		//Ware_Ad_list.get(i).W_house.Product_list.get(j);
+						if((Ware_Ad_list.get(i).W_house.Product_list.get(j).P_ID==id) && (Ware_Ad_list.get(i).W_house.Product_list.get(j).Quantity>quantity))
+						{
+							return new Product("",0,"",0,0,0,quantity,0);		//Ware_Ad_list.get(i).W_house.Product_list.get(j);
+						}
 					}
 				}
 			}
+			throw new CustomException("There is no such Product exists in SuperStore");
 		}
+		catch(CustomException e)
+		{
+			System.out.println(e.getMessage());
+		}		
 	}		
 }

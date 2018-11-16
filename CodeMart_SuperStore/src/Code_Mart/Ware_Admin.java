@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 class Ware_Admin implements Serializable
 {
-	private WareHouse W_house;
+	protected WareHouse W_house;
 
 	public Ware_Admin(WareHouse house_ware,int _id,String _str)
 	{

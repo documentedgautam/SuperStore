@@ -2,8 +2,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 class Customer extends User implements Serializable
 {
-	private  ArrayList<Product> Cart_list;
-	private  int fund;
+	protected  ArrayList<Product> Cart_list;
+	protected  int fund;
 	protected Store Cust_Store;
 
 	public Customer(int _id,String pswd,Store _store)
@@ -32,53 +32,67 @@ class Customer extends User implements Serializable
 
 	protected boolean Check_Availability(Product prod) throws CustomException
 	{
-		int flag=0;
-		for(int i=0;i<Cust_Store.Prod_list.size();i++)			
+		try
 		{
-			if(Cust_Store.Prod_list.get(i).P_NAME.equals(prod.P_NAME))
+			int flag=0;
+			for(int i=0;i<Cust_Store.Prod_list.size();i++)			
 			{
-				if(Cust_Store.Prod_list.get(i).P_ID==prod.ID)
+				if(Cust_Store.Prod_list.get(i).P_NAME.equals(prod.P_NAME))
 				{
-					if(Cust_Store.Prod_list.get(i).Quantity>=prod.Quantity)
+					if(Cust_Store.Prod_list.get(i).P_ID==prod.ID)
 					{
-						return true;
+						if(Cust_Store.Prod_list.get(i).Quantity>=prod.Quantity)
+						{
+							return true;
+						}
+						else
+						{
+							flag=1;
+							break;
+						}								// invalid name or id of product
 					}
-					else
-					{
-						flag=1;
-						break;
-					}								// invalid name or id of product
 				}
 			}
-		}
-		if(flag==1)
-		{
+			if(flag==1)
+			{
+				return false;
+			}
+			else
+			{
+				throw new CustomException("Invalid name or id of product");
+			}
+
 			return false;
 		}
-		else
+		catch(CustomException e)
 		{
-			throw new CustomException("Invalid name or id of product");
+			System.out.println(e.getMessage());
 		}
-
-		return false;
 	}
 
 	protected void Add_to_Cart(Product prod) throws CustomException
 	{
-		int flag=0;
-		for(int i=0;i<Cust_Store.Prod_list.size();i++)
+		try
 		{
-			if((Cust_Store.Prod_list.get(i).P_NAME.equals(prod.P_NAME)) &&(Cust_Store.Prod_list.get(i).P_ID==prod.P_ID))
+			int flag=0;
+			for(int i=0;i<Cust_Store.Prod_list.size();i++)
 			{
-				Cart_list.add(prod);
-				flag=1;
-				break;
+				if((Cust_Store.Prod_list.get(i).P_NAME.equals(prod.P_NAME)) &&(Cust_Store.Prod_list.get(i).P_ID==prod.P_ID))
+				{
+					Cart_list.add(prod);
+					flag=1;
+					break;
+				}
+			}	
+			if(flag==0)
+			{
+				throw new CustomException("Product does not exist");
 			}
-		}	
-		if(flag==0)
+		}
+		catch(CustomException e)
 		{
-			throw new CustomException("Product does not exist");
-		}	
+			System.out.println(e.getMessage());
+		}			
 	}
 
 	protected void Sort()
@@ -88,7 +102,9 @@ class Customer extends User implements Serializable
 
 	protected void Payment() throws CustomException
 	{
-		int flag=0;								// for fund ---> it will decrease only when 
+		try
+		{
+			int flag=0;								// for fund ---> it will decrease only when 
 												// customer's fund will decrease,
 			for(int i=0;i<Cart_list.size();i++)	// Store products quantity will decrease
 			{									// check EOQ
@@ -127,7 +143,12 @@ class Customer extends User implements Serializable
 			if(flag==1)
 			{
 				throw new CustomException("Out of funds");
-			}						
+			}
+		}
+		catch(CustomException e)
+		{
+			System.out.println(e.getMessage());
+		}								
 	}
 
 	protected void Change_Store(Store st)
