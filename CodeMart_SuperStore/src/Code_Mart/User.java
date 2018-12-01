@@ -1,13 +1,8 @@
-class User implements Serializable
-{
-	protected int ID;
-	protected String PSWD;
+package Code_Mart;
 
-	public User(int id,String pswd)
-	{
-		ID = id;
-		PSWD = pswd;
-	}
+public class User {
+    protected int ID;
+    protected String PSWD;
+
+
 }
-
-

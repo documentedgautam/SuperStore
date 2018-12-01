@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="533.0" maxWidth="705.0" minHeight="533.0" minWidth="705.0" prefHeight="533.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Code_Mart.SU_Opt">
+   <children>
+      <Label layoutX="194.0" layoutY="14.0" text="&lt;Welcome SuperUser&gt;">
+         <font>
+            <Font name="Dyuthi" size="34.0" />
+         </font>
+      </Label>
+      <VBox layoutX="435.0" layoutY="94.0" prefHeight="425.0" prefWidth="239.0">
+         <children>
+            <Button maxHeight="60.0" maxWidth="185.0" minHeight="60.0" minWidth="185.0" mnemonicParsing="false" onAction="#create_warehouse" prefHeight="60.0" prefWidth="185.0" text="Create WareHouse">
+               <font>
+                  <Font name="KacstBook" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="27.0" />
+               </VBox.margin>
+            </Button>
+            <Button maxHeight="60.0" maxWidth="185.0" minHeight="60.0" minWidth="185.0" mnemonicParsing="false" onAction="#create_store" prefHeight="60.0" prefWidth="185.0" text="Create Store">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="27.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="KacstBook" size="14.0" />
+               </font>
+            </Button>
+            <Button maxHeight="60.0" maxWidth="210.0" minHeight="60.0" minWidth="210.0" mnemonicParsing="false" onAction="#linkSnW" prefHeight="60.0" prefWidth="210.0" text="De/Link Store to WareHouse">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="14.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="KacstBook" size="13.0" />
+               </font>
+            </Button>
+            <Button maxHeight="60.0" maxWidth="185.0" minHeight="60.0" minWidth="185.0" mnemonicParsing="false" onAction="#see_data" prefHeight="60.0" prefWidth="185.0" text="See Data">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="27.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="KacstBook" size="14.0" />
+               </font>
+            </Button>
+            <Button maxHeight="60.0" maxWidth="185.0" minHeight="60.0" minWidth="185.0" mnemonicParsing="false" onAction="#signout" prefHeight="60.0" prefWidth="185.0" text="Sign Out">
+               <VBox.margin>
+                  <Insets left="27.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="KacstBook" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

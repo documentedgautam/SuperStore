@@ -1,11 +1,15 @@
-import java.io.Serializable;
-import java.util.ArrayList;
-class Store_Admin implements Serializable
-{
-	protected Store store;
+package Code_Mart;
 
-	public Store_Admin(Store st)
-	{
-		store = st;
-	}
+public class Store_Admin extends User{
+    protected Store store;
+
+    public Store_Admin(Store st){
+        store = st;
+    }
+
+    public Store_Admin(int ID, String PSWD, String Name){
+        this.ID=ID;
+        this.PSWD=PSWD;
+        this.store=new Store(Name);
+    }
 }

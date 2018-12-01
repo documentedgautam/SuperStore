@@ -1,13 +1,17 @@
-import java.io.Serializable;
-import java.util.ArrayList;
-class Ware_Admin implements Serializable
-{
-	protected WareHouse W_house;
+package Code_Mart;
 
-	public Ware_Admin(WareHouse house_ware,int _id,String _str)
-	{
-		W_house = house_ware;
-		this.id = _id;
-		this.pswd = _str;
-	}
+import java.util.ArrayList;
+
+public class Ware_Admin extends User{
+    protected WareHouse W_house;
+
+    public Ware_Admin(){
+
+    }
+
+    public Ware_Admin(int ID, String PSWD, String Name, ArrayList<Ware_Admin> Ware_Ad_list){
+        this.ID=ID;
+        this.PSWD=PSWD;
+        this.W_house=new WareHouse(Name, Ware_Ad_list);
+    }
 }

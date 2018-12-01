@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="533.0" maxWidth="705.0" minHeight="533.0" minWidth="705.0" prefHeight="533.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Code_Mart.RegWareNStoreController">
+   <children>
+      <Label layoutX="232.0" layoutY="14.0" text="CodeMart Status">
+         <font>
+            <Font name="FreeMono Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="no_w_house" layoutX="274.0" layoutY="68.0" prefHeight="26.0" prefWidth="56.0" />
+      <Text layoutX="38.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registered WareHouses  : ">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="363.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registered Stores : ">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="no_store" layoutX="543.0" layoutY="67.0" prefHeight="26.0" prefWidth="56.0" />
+      <TableView fx:id="RegWareNStore_Tabel1" layoutY="94.0" prefHeight="440.0" prefWidth="353.0">
+        <columns>
+          <TableColumn fx:id="w_nameColumn" prefWidth="190.0" text="WareHouse Name" />
+          <TableColumn fx:id="n_prod1" minWidth="0.0" prefWidth="162.0" text="No. Of Products" />
+        </columns>
+      </TableView>
+      <TableView fx:id="RegWareNStore_Tabel2" layoutX="354.0" layoutY="93.0" prefHeight="440.0" prefWidth="353.0">
+        <columns>
+          <TableColumn fx:id="s_name" prefWidth="175.0" text="Store Name" />
+          <TableColumn fx:id="n_prod2" minWidth="0.0" prefWidth="177.0" text="No. Of Products" />
+        </columns>
+      </TableView>
+      <Button layoutX="19.0" layoutY="15.0" mnemonicParsing="false" onAction="#go_back" text="Back">
+         <font>
+            <Font name="FreeSans" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,17 +1,7 @@
-public interface Add_Del_Upd()
-{
-	public void Add(String path,Product prod)
-	{
+package Code_Mart;
 
-	}
-
-	public void Delete(Product prod)
-	{
-
-	}
-
-	public void Update(Product prod)
-	{
-
-	}	
+public interface Add_Del_Upd{
+    public void Add(String path,Product prod);
+    public void Delete(Product prod);
+    public void Update(Product prod);
 }

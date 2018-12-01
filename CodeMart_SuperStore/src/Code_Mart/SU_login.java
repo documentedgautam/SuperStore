@@ -23,8 +23,13 @@ public class SU_login {
     PasswordField password;
 
     @FXML
-    public void isvalid(ActionEvent event) {
-        String userid = suser_id.getText();
+    public void isvalid(ActionEvent event)throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("SU_opt.fxml"));
+        Scene su_login_scene = new Scene(root);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(su_login_scene);
+        window.show();
+        /*String userid = suser_id.getText();
         String paswd = password.getText();
         if (userid.isEmpty() || paswd.isEmpty()) {
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
@@ -45,7 +50,7 @@ public class SU_login {
                 password.setText("");
                 alert1.showAndWait();
             }
-        }
+        }*/
     }
 
     @FXML
