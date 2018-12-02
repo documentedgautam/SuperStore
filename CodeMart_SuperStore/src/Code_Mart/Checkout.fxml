@@ -25,32 +25,33 @@
                   <Font name="FreeMono Bold" size="17.0" />
                </font>
             </Text>
-            <TextField promptText="Product Name">
+            <TextField fx:id="P_name" promptText="Product Name">
                <VBox.margin>
                   <Insets bottom="20.0" top="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField promptText="Quantity">
+            <TextField fx:id="Q_prod" promptText="Quantity">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="160.0">
+            <Text fx:id="txt" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="160.0">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Text>
-            <Button mnemonicParsing="false" text="Check" />
+            <Button mnemonicParsing="false" onAction="#check_availability" text="Check" />
          </children>
       </VBox>
       <TableView fx:id="p_names" layoutX="-4.0" layoutY="83.0" prefHeight="447.0" prefWidth="239.0">
         <columns>
-          <TableColumn fx:id="p_name" prefWidth="238.00003051757812" text="Products in Store" />
+          <TableColumn fx:id="p1_name" prefWidth="165.00003051757812" text="Products in Store" />
+            <TableColumn fx:id="quantity" prefWidth="73.0" text="Quantity" />
         </columns>
       </TableView>
       <VBox alignment="TOP_CENTER" layoutX="515.0" layoutY="407.0" prefHeight="121.0" prefWidth="178.0">
          <children>
-            <Button maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Check Out">
+            <Button maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#check_out" prefHeight="30.0" prefWidth="150.0" text="Check Out">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -77,17 +78,17 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Text>
-            <TextField promptText="Product Name">
+            <TextField fx:id="p_name" promptText="Product Name">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField promptText="Quantity">
+            <TextField fx:id="q_prod" promptText="Quantity">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <Button maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Add To Cart" />
+            <Button maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#add_to_cart" prefHeight="30.0" prefWidth="150.0" text="Add To Cart" />
          </children>
       </VBox>
       <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#go_back" text="Back" />

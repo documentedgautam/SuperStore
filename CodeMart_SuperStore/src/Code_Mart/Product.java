@@ -35,6 +35,17 @@ class Product implements Serializable
         Price = 0;
     }
 
+    public Product(String Name, int Quantity){
+        P_NAME = Name;
+        P_ID = 0;
+        PATH = null;
+        d = 0;
+        h = 0;
+        k = 0;
+        this.Quantity = Quantity;
+        Price = 0;
+    }
+
     public Product(String p_name,int p_id,String path,int _d,int _h,int _k,int _Quantity,int _price)
     {
         P_NAME = p_name;

@@ -3,20 +3,6 @@ package Code_Mart;
 import java.util.ArrayList;
 
 public class WareHouse {
-//    String Name;
-//    protected ArrayList<Store> Store_list;
-//    protected ArrayList<Category> Cat_list;
-//    protected ArrayList<Product> Product_list;
-//    protected ArrayList<Ware_Admin> Ware_Ad_list;
-//
-//
-//    public WareHouse(String Name, ArrayList<Ware_Admin> Ware_Ad_list){
-//        this.Name=Name;
-//        Store_list = new ArrayList<Store>();
-//        Cat_list=new  ArrayList<Category>();
-//        Product_list=new  ArrayList<Product>();
-//        this.Ware_Ad_list= Ware_Ad_list;
-//    }
     private final String NAME;
     protected ArrayList<Category>Cat_list;		// database
     protected ArrayList<Store_Admin>Store_Ad_list;	// linked stores to that warehouse

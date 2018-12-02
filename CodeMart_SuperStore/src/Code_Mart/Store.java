@@ -12,6 +12,10 @@ public class Store {
     protected ArrayList<Product> Prod_list;
     protected WareHouse parent;
 
+    public Store(){
+        NAME=null;
+    }
+
     public Store(String NAME)
     {
         this.NAME = NAME;

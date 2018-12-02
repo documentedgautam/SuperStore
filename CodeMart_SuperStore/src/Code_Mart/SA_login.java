@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SA_login {
-    String user_id="54321";
-    String pswd ="lol";
+
     @FXML
     TextField suser_id;
 
@@ -22,7 +21,8 @@ public class SA_login {
     PasswordField password;
 
     @FXML
-    public void isvalid(ActionEvent event){
+    public void isvalid(ActionEvent event)throws IOException{
+        SuperUser SU=SuperUser.getInstance();
         String userid=suser_id.getText();
         String paswd=password.getText();
         if (userid.isEmpty()||paswd.isEmpty()){
@@ -32,13 +32,24 @@ public class SA_login {
             alert1.showAndWait();
         }
         else{
-            if (userid.equals(user_id)&&paswd.equals(pswd)){
-                Alert alert1=new Alert(Alert.AlertType.INFORMATION);
-                alert1.setHeaderText(null);
-                alert1.setContentText("Login Successful");
-                alert1.showAndWait();
+            boolean flag=true;
+            for(int i=0;i<SU.giveSAlist().size();i++){
+                if(SU.giveSAlist().get(i).ID==Integer.parseInt(userid)){
+                    if(SU.giveSAlist().get(i).PSWD.equals(paswd)){
+                        flag=false;
+                        Alert alert1=new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setHeaderText(null);
+                        alert1.setContentText("Login Successful");
+                        alert1.showAndWait();
+                        Parent root = FXMLLoader.load(getClass().getResource("S_opt.fxml"));
+                        Scene su_login_scene = new Scene(root);
+                        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        window.setScene(su_login_scene);
+                        window.show();
+                    }
+                }
             }
-            else{
+            if(flag){
                 Alert alert1=new Alert(Alert.AlertType.ERROR);
                 alert1.setHeaderText(null);
                 alert1.setContentText("Wrong user id or password");
