@@ -1,6 +1,6 @@
-package Code_Mart;
-
-public class User {
+import java.io.*;
+public class User implements Serializable
+{
     protected int ID;
     protected String PSWD;
 
