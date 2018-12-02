@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="533.0" maxWidth="705.0" minHeight="533.0" minWidth="705.0" prefHeight="533.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Code_Mart.GU_Opt">
+   <children>
+      <Label layoutX="190.0" layoutY="5.0" text="&lt;Welcome Guest User&gt;">
+         <font>
+            <Font name="Dyuthi" size="34.0" />
+         </font>
+      </Label>
+      <VBox alignment="TOP_CENTER" layoutX="440.0" layoutY="307.0" prefHeight="205.0" prefWidth="150.0">
+         <children>
+            <Button maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Add Fund">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" onAction="#sign_out" prefHeight="35.0" prefWidth="150.0" text="Sign Out" />
+         </children>
+      </VBox>
+      <VBox layoutX="14.0" layoutY="88.0" prefHeight="437.0" prefWidth="253.0">
+         <children>
+            <TableView fx:id="Store_name" prefHeight="437.0" prefWidth="227.0">
+              <columns>
+                <TableColumn fx:id="Store_col" prefWidth="252.0" text="Stores" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="422.0" layoutY="88.0" prefHeight="205.0" prefWidth="186.0">
+         <children>
+            <Label text="!Enter Store!" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="FreeMono Bold" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="S_name" promptText="Enter Store Name">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fx:id="txt" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="183.0" />
+            <Button mnemonicParsing="false" onAction="#enter" text="Enter" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

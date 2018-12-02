@@ -43,6 +43,15 @@ public class Main_Controller {
     }
 
     @FXML
+    public void GU_login_page(ActionEvent event)throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("GU_opt.fxml"));
+        Scene su_login_scene = new Scene(root);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(su_login_scene);
+        window.show();
+    }
+
+    @FXML
     public void exit(ActionEvent event){
         System.exit(0);
     }

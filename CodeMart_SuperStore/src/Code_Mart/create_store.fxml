@@ -19,28 +19,29 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <TextField layoutX="200.0" layoutY="75.0" promptText="Store Name" />
-      <TextField layoutX="199.0" layoutY="146.0" promptText="ID Number" />
-      <TextField layoutX="199.0" layoutY="215.0" promptText="Password" />
-      <Text layoutX="25.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter ID             :-">
+      <TextField fx:id="s_name" layoutX="200.0" layoutY="75.0" promptText="Store Name" />
+      <TextField fx:id="s_id" layoutX="199.0" layoutY="122.0" promptText="ID Number" />
+      <TextField fx:id="s_pswd" layoutX="200.0" layoutY="172.0" promptText="Password" />
+      <Text layoutX="26.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter ID             :-">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Text layoutX="23.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Password  :-">
+      <Text layoutX="24.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Password  :-">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Button layoutX="97.0" layoutY="255.0" mnemonicParsing="false" text="Create">
+      <Button layoutX="97.0" layoutY="255.0" mnemonicParsing="false" onAction="#s_create" text="Create">
          <font>
             <Font name="Serif Italic" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="215.0" layoutY="255.0" mnemonicParsing="false" text="Cancel">
+      <Button layoutX="215.0" layoutY="255.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
          <font>
             <Font name="Serif Italic" size="13.0" />
          </font>
       </Button>
+      <Text fx:id="n_id" layoutX="79.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="241.7294921875" />
    </children>
 </AnchorPane>

@@ -1,33 +1,47 @@
 package Code_Mart;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class SuperUser extends User{
     protected ArrayList<Ware_Admin> Ware_Ad_list;
     protected ArrayList<Store_Admin> Store_Ad_list;
+    private static SuperUser SU=null;
 
-    public SuperUser(int ID, String PSWD){
-        this.ID=ID;
-        this.PSWD=PSWD;
+    public static SuperUser getInstance(){
+        if (SU==null){
+            SU=new SuperUser();
+        }
+        return SU;
+
+    }
+
+    public SuperUser() {
+        this.ID=2021;
+        this.PSWD="CM@001";
         Ware_Ad_list = new ArrayList<Ware_Admin>();
         Store_Ad_list = new ArrayList<Store_Admin>();
     }
 
-    public SuperUser() {
-
-    }
-
     public ArrayList<Ware_Admin> giveWAlist(){
-        return Ware_Ad_list;
+        return SU.Ware_Ad_list;
     }
 
     public ArrayList<Store_Admin> giveSAlist(){
-        return Store_Ad_list;
+        return SU.Store_Ad_list;
     }
 
     protected void Create_Warehouse(int id, String PSWD, String Name){
         Ware_Admin ware_admin=new Ware_Admin(id, PSWD, Name, Ware_Ad_list);
-        Ware_Ad_list.add(ware_admin);
+        boolean flag=true;
+        for(int i=0;i<Ware_Ad_list.size();i++){
+            if(Ware_Ad_list.get(i).ID==id){
+                flag=false;
+            }
+        }
+        if(flag) {
+            Ware_Ad_list.add(ware_admin);
+        }
         //sort_w_house(Ware_Ad_list,0,Ware_Ad_list.size());
     }
 
@@ -37,16 +51,31 @@ public class SuperUser extends User{
         //sort_store(Store_Ad_list,0, Store_Ad_list.size());
     }
 
-    protected void Link_SnW(String W_name, String S_name){
-        for (int i=0; i<Ware_Ad_list.size();i++) {
-            if(Ware_Ad_list.get(i).W_house.getNAME().equals(W_name)){
-                for (int j=0;j<Store_Ad_list.size();j++){
-                    if(Store_Ad_list.get(j).store.getNAME().equals(S_name)){
-                        Ware_Ad_list.get(i).W_house.Store_Ad_list.add(Store_Ad_list.get(j));
-                        break;
+    protected void Link_SnW(String W_name, String S_name, int l){
+        if(l==1) {
+            for (int i = 0; i < Ware_Ad_list.size(); i++) {
+                if (Ware_Ad_list.get(i).W_house.getNAME().equals(W_name)) {
+                    for (int j = 0; j < Store_Ad_list.size(); j++) {
+                        if (Store_Ad_list.get(j).store.getNAME().equals(S_name)) {
+                            Ware_Ad_list.get(i).W_house.Store_Ad_list.add(Store_Ad_list.get(j));
+                            break;
+                        }
                     }
+                    break;
                 }
-                break;
+            }
+        }
+        else if(l==-1){
+            for (int i = 0; i < Ware_Ad_list.size(); i++) {
+                if (Ware_Ad_list.get(i).W_house.getNAME().equals(W_name)) {
+                    for (int j=0;j<Ware_Ad_list.get(i).W_house.Store_Ad_list.size();j++){
+                        if(Ware_Ad_list.get(i).W_house.Store_Ad_list.get(j).store.getNAME().equals(S_name)){
+                            Ware_Ad_list.get(i).W_house.Store_Ad_list.remove(j);
+                            break;
+                        }
+                    }
+                    break;
+                }
             }
         }
     }

@@ -19,27 +19,28 @@
             <Font name="Abyssinica SIL" size="19.0" />
          </font>
       </Text>
-      <TextField layoutX="221.0" layoutY="81.0" promptText="Enter WareHouse Name" />
-      <TextField layoutX="221.0" layoutY="151.0" promptText="Enter Store Name" />
+      <TextField fx:id="w_name" layoutX="221.0" layoutY="81.0" promptText="Enter WareHouse Name" />
+      <TextField fx:id="s_name" layoutX="221.0" layoutY="151.0" promptText="Enter Store Name" />
       <Text layoutX="24.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Store Name        :-">
          <font>
             <Font name="Abyssinica SIL" size="19.0" />
          </font>
       </Text>
-      <Button layoutX="75.0" layoutY="212.0" mnemonicParsing="false" text="Link!!">
+      <Button layoutX="76.0" layoutY="225.0" mnemonicParsing="false" onAction="#link" text="Link!!">
          <font>
             <Font name="Serif Italic" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="275.0" layoutY="212.0" mnemonicParsing="false" text="Cancel">
+      <Button layoutX="275.0" layoutY="225.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
          <font>
             <Font name="Serif Italic" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="175.0" layoutY="212.0" mnemonicParsing="false" text="Delink!!">
+      <Button layoutX="173.0" layoutY="225.0" mnemonicParsing="false" onAction="#delink" text="Delink!!">
          <font>
             <Font name="Serif Italic" size="13.0" />
          </font>
       </Button>
+      <Text fx:id="t_id" layoutX="87.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="232.7294921875" />
    </children>
 </AnchorPane>

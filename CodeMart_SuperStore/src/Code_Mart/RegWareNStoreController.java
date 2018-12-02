@@ -21,7 +21,6 @@ import java.util.ResourceBundle;
 public class RegWareNStoreController implements Initializable{
     public ArrayList<Ware_Admin> Ware_Ad_list;
     public ArrayList<Store_Admin> Store_Ad_list;
-    SuperUser SU=new SuperUser();
     @FXML
     private Label label;
 
@@ -44,10 +43,10 @@ public class RegWareNStoreController implements Initializable{
     private TableColumn<ware_pro_obj, Integer> n_prod1;
 
     @FXML
-    private TableColumn<ware_pro_obj, String> s_name;
+    private TableColumn<store_pro_obj, String> s_name;
 
     @FXML
-    private TableColumn<ware_pro_obj, Integer> n_prod2;
+    private TableColumn<store_pro_obj, Integer> n_prod2;
 
     @FXML
     public void go_back(ActionEvent event)throws IOException {
@@ -60,6 +59,7 @@ public class RegWareNStoreController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
+        SuperUser SU=SuperUser.getInstance();
         Ware_Ad_list=SU.giveWAlist();
         Store_Ad_list=SU.giveSAlist();
         try {
@@ -74,18 +74,16 @@ public class RegWareNStoreController implements Initializable{
         catch (NullPointerException e){
             no_store.setText(Integer.toString(0));
         }
+        s_name.setCellValueFactory(new PropertyValueFactory<store_pro_obj, String>("NAME"));
+        n_prod2.setCellValueFactory(new PropertyValueFactory<store_pro_obj, Integer>("no_of_prod"));
+        RegWareNStore_Tabel2.setItems(getObj2());
         w_nameColumn.setCellValueFactory(new PropertyValueFactory<ware_pro_obj, String>("NAME"));
         n_prod1.setCellValueFactory(new PropertyValueFactory<ware_pro_obj, Integer>("no_of_prod"));
         RegWareNStore_Tabel1.setItems(getObj1());
-        s_name.setCellValueFactory(new PropertyValueFactory<ware_pro_obj, String>("NAME"));
-        n_prod2.setCellValueFactory(new PropertyValueFactory<ware_pro_obj, Integer>("no_of_prod"));
-        RegWareNStore_Tabel2.setItems(getObj2());
     }
 
     public ObservableList<ware_pro_obj> getObj1(){
         ObservableList<ware_pro_obj> obj=FXCollections.observableArrayList();
-        //obj.add(new ware_pro_obj("dhaba", 25));
-        //obj.add(new ware_pro_obj("dukaan", 10));
         try {
             for (int i = 0; i < Ware_Ad_list.size(); i++) {
                 obj.add(new ware_pro_obj(Ware_Ad_list.get(i).W_house.getNAME(), Ware_Ad_list.get(i).W_house.Product_list.size()));
@@ -98,18 +96,16 @@ public class RegWareNStoreController implements Initializable{
     }
 
     public ObservableList<store_pro_obj> getObj2(){
-        ObservableList<store_pro_obj> obj=FXCollections.observableArrayList();
-        //obj.add(new ware_pro_obj("dhaba", 25));
-        //obj.add(new ware_pro_obj("dukaan", 10));
+        ObservableList<store_pro_obj> obj1=FXCollections.observableArrayList();
         try {
             for (int i = 0; i < Store_Ad_list.size(); i++) {
-                obj.add(new store_pro_obj(Store_Ad_list.get(i).store.getNAME(), Store_Ad_list.get(i).store.getProduct_list().size()));
+                obj1.add(new store_pro_obj(Store_Ad_list.get(i).store.getNAME(), Store_Ad_list.get(i).store.getProduct_list().size()));
             }
         }
         catch (NullPointerException e){
 
         }
-        return obj;
+        return obj1;
     }
 
 }

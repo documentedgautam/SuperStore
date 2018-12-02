@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="533.0" maxWidth="705.0" minHeight="533.0" minWidth="705.0" prefHeight="533.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Code_Mart.WA_Opt">
    <children>
@@ -14,11 +17,115 @@
             <Font name="Dyuthi" size="32.0" />
          </font>
       </Label>
-      <VBox layoutX="434.0" layoutY="86.0" prefHeight="339.0" prefWidth="222.0">
+      <VBox alignment="TOP_CENTER" layoutX="493.0" layoutY="274.0" prefHeight="200.0" prefWidth="170.0">
          <children>
-            <Button mnemonicParsing="false" text="Delete" />
+            <Label text="Update Product">
+               <font>
+                  <Font name="Dyuthi" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField maxHeight="30.0" maxWidth="170.0" minHeight="30.0" minWidth="170.0" prefHeight="30.0" prefWidth="170.0" promptText="Product Name">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxHeight="30.0" maxWidth="170.0" minHeight="30.0" minWidth="170.0" prefHeight="30.0" prefWidth="170.0" promptText="Quantity">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" text="Change" />
+         </children></VBox>
+      <VBox alignment="TOP_CENTER" layoutX="15.0" layoutY="108.0" prefHeight="134.0" prefWidth="190.0">
+         <children>
+            <Label prefHeight="43.0" prefWidth="71.0" text="Category">
+               <font>
+                  <Font name="Dyuthi" size="19.0" />
+               </font>
+            </Label>
+            <TextField maxHeight="30.0" maxWidth="170.0" minHeight="30.0" minWidth="170.0" prefHeight="30.0" prefWidth="170.0" promptText="Category Name">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fx:id="txt1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="182.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin>
+            </Text>
+            <ButtonBar buttonMinWidth="50.0" maxHeight="37.0" maxWidth="186.0" minHeight="30.0" minWidth="150.0" prefHeight="37.0" prefWidth="171.0">
+              <buttons>
+                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Add" />
+                  <Button minWidth="60.0" mnemonicParsing="false" prefHeight="26.0" text="Remove" />
+              </buttons>
+            </ButtonBar>
          </children>
       </VBox>
-      <VBox layoutX="118.0" layoutY="183.0" prefHeight="200.0" prefWidth="100.0" />
+      <VBox alignment="TOP_CENTER" layoutX="483.0" layoutY="117.0" prefHeight="134.0" prefWidth="190.0">
+         <children>
+            <Label prefHeight="43.0" prefWidth="115.0" text="Sub-Category">
+               <font>
+                  <Font name="Dyuthi" size="19.0" />
+               </font>
+            </Label>
+            <TextField maxHeight="30.0" maxWidth="170.0" minHeight="30.0" minWidth="170.0" prefHeight="30.0" prefWidth="170.0" promptText="SubCategory Name">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fx:id="txt2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="182.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin>
+            </Text>
+            <ButtonBar buttonMinWidth="50.0" maxHeight="37.0" maxWidth="186.0" minHeight="30.0" minWidth="150.0" prefHeight="37.0" prefWidth="171.0">
+               <buttons>
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Add" />
+                  <Button minWidth="60.0" mnemonicParsing="false" prefHeight="26.0" text="Remove" />
+               </buttons>
+            </ButtonBar>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="241.0" layoutY="108.0" prefHeight="306.0" prefWidth="190.0">
+         <children>
+            <Label prefHeight="43.0" prefWidth="71.0" text="Product">
+               <font>
+                  <Font name="Dyuthi" size="19.0" />
+               </font>
+            </Label>
+            <TextField maxHeight="30.0" maxWidth="170.0" minHeight="30.0" minWidth="170.0" prefHeight="30.0" prefWidth="170.0" promptText="Category Name">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxHeight="30.0" maxWidth="170.0" minHeight="30.0" minWidth="170.0" prefHeight="30.0" prefWidth="170.0" promptText="SubCategory Name">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxHeight="30.0" maxWidth="170.0" minHeight="30.0" minWidth="170.0" prefHeight="30.0" prefWidth="170.0" promptText="Product Name">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fx:id="txt3" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="182.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin>
+            </Text>
+            <ButtonBar buttonMinWidth="50.0" maxHeight="37.0" maxWidth="186.0" minHeight="30.0" minWidth="150.0" prefHeight="37.0" prefWidth="171.0">
+               <buttons>
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Add" />
+                  <Button minWidth="60.0" mnemonicParsing="false" prefHeight="26.0" text="Remove" />
+               </buttons>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ButtonBar>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

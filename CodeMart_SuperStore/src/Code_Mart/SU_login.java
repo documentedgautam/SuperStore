@@ -14,8 +14,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SU_login {
-    String user_id = "54321";
-    String pswd = "lol";
+    String user_id = "2021";
+    String pswd = "CM@001";
+
     @FXML
     TextField suser_id;
 
@@ -26,10 +27,7 @@ public class SU_login {
     public void isvalid(ActionEvent event)throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SU_opt.fxml"));
         Scene su_login_scene = new Scene(root);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(su_login_scene);
-        window.show();
-        /*String userid = suser_id.getText();
+        String userid = suser_id.getText();
         String paswd = password.getText();
         if (userid.isEmpty() || paswd.isEmpty()) {
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
@@ -38,10 +36,9 @@ public class SU_login {
             alert1.showAndWait();
         } else {
             if (userid.equals(user_id) && paswd.equals(pswd)) {
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                alert1.setHeaderText(null);
-                alert1.setContentText("Login Successful");
-                alert1.showAndWait();
+                Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                window.setScene(su_login_scene);
+                window.show();
             } else {
                 Alert alert1 = new Alert(Alert.AlertType.ERROR);
                 alert1.setHeaderText(null);
@@ -50,7 +47,7 @@ public class SU_login {
                 password.setText("");
                 alert1.showAndWait();
             }
-        }*/
+        }
     }
 
     @FXML

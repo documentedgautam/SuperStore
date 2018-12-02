@@ -2,54 +2,21 @@ package Code_Mart;
 import java.util.ArrayList;
 
 public class Store {
-//    private final String NAME;
-//    private ArrayList<Category> Cat_list;
-//    private ArrayList<Product> Product_list;
-//    private WareHouse Parent;
-//
-//    public Store(String NAME){
-//        this.NAME=NAME;
-//    }
-//
+
     protected String getNAME(){
         return this.NAME;
     }
-//
-//    public ArrayList<Category> getCat_list() {
-//        return Cat_list;
-//    }
-//
-//    public void setCat_list(ArrayList<Category> cat_list) {
-//        Cat_list = cat_list;
-//    }
-//
-//    public ArrayList<Product> getProduct_list() {
-//        return Product_list;
-//    }
-//
-//    public void setProduct_list(ArrayList<Product> product_list) {
-//        Product_list = product_list;
-//    }
-//
-//    public WareHouse getParent() {
-//        return Parent;
-//    }
-//
-//    public void setParent(WareHouse parent) {
-//        Parent = parent;
-//    }
+
     private final String NAME;
     protected ArrayList<Category> Cat_list;
     protected ArrayList<Product> Prod_list;
     protected WareHouse parent;
 
-    public Store(String name)
+    public Store(String NAME)
     {
-        this.NAME = name;
+        this.NAME = NAME;
         Cat_list = new ArrayList<Category>();
-        //Store_list = new ArrayList<Store_Admin>();
         Prod_list = new ArrayList<Product>();
-        //Ware_Ad_list = new ArrayList<Ware_Admin>();
         parent = null;
     }
 

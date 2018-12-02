@@ -7,11 +7,6 @@ public class SuperStore_System implements Serializable
 
     public SuperUser Create_SuperUser(int id,String pswd)
     {
-        return new SuperUser(id,pswd);
-    }
-
-    public static void main(String[]args)
-    {
-
+        return new SuperUser();
     }
 }

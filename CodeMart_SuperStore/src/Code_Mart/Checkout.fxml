@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="533.0" maxWidth="705.0" minHeight="533.0" minWidth="705.0" prefHeight="533.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Code_Mart.CheckOut">
+   <children>
+      <Label layoutX="190.0" layoutY="14.0" text="&lt;Welcome Guest User&gt;">
+         <font>
+            <Font name="Dyuthi" size="34.0" />
+         </font>
+      </Label>
+      <VBox alignment="TOP_CENTER" layoutX="515.0" layoutY="83.0" prefHeight="144.0" prefWidth="178.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="!Availability!">
+               <font>
+                  <Font name="FreeMono Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextField promptText="Product Name">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField promptText="Quantity">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="160.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <Button mnemonicParsing="false" text="Check" />
+         </children>
+      </VBox>
+      <TableView fx:id="p_names" layoutX="-4.0" layoutY="83.0" prefHeight="447.0" prefWidth="239.0">
+        <columns>
+          <TableColumn fx:id="p_name" prefWidth="238.00003051757812" text="Products in Store" />
+        </columns>
+      </TableView>
+      <VBox alignment="TOP_CENTER" layoutX="515.0" layoutY="407.0" prefHeight="121.0" prefWidth="178.0">
+         <children>
+            <Button maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Check Out">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Search">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#Sign_Out" text="Sign Out" />
+         </children>
+      </VBox>
+      <TableView fx:id="res" layoutX="253.0" layoutY="83.0" prefHeight="447.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="s_res" prefWidth="199.0" text="Search results" />
+        </columns>
+      </TableView>
+      <VBox alignment="TOP_CENTER" layoutX="515.0" layoutY="251.0" prefHeight="121.0" prefWidth="178.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cart">
+               <font>
+                  <Font name="Abyssinica SIL" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField promptText="Product Name">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField promptText="Quantity">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Add To Cart" />
+         </children>
+      </VBox>
+      <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#go_back" text="Back" />
+   </children>
+</AnchorPane>
